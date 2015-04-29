@@ -124,6 +124,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "18 - Handlers Sort Order", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSB18HandlersSortOrder", "NSB18HandlersSortOrder\NSB18HandlersSortOrder.csproj", "{C3E36639-1B0A-4929-B604-78FA3C3BE6D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "19 - ServiceControlEvents", "19 - ServiceControlEvents", "{9FA3A367-14B9-410B-AEE1-A03FF3EACAF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSB19ServiceControlEvents", "NSB19ServiceControlEvents\NSB19ServiceControlEvents.csproj", "{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -286,6 +290,10 @@ Global
 		{C3E36639-1B0A-4929-B604-78FA3C3BE6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3E36639-1B0A-4929-B604-78FA3C3BE6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3E36639-1B0A-4929-B604-78FA3C3BE6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -332,5 +340,6 @@ Global
 		{F82C68DB-E009-4097-A8A5-3A303B421B68} = {5B4D2C7C-CF4F-4E81-80B1-F2A79045A53E}
 		{2F216A47-2008-410D-97DB-5BFC40104C9A} = {9184DC48-C5AA-437D-8894-DEFB9FE4235C}
 		{C3E36639-1B0A-4929-B604-78FA3C3BE6D5} = {E22E688C-AF48-42E0-BF97-D5FEDE3201C0}
+		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A} = {9FA3A367-14B9-410B-AEE1-A03FF3EACAF1}
 	EndGlobalSection
 EndGlobal
