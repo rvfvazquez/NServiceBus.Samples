@@ -7,6 +7,9 @@
 *.sln.docstates
 *.sln.ide/
 
+# NServiceBus Logs
+nsb_log_*.txt
+
 # Build results
 
 [Dd]ebug/
@@ -133,6 +136,8 @@ UpgradeLog*.htm
 App_Data/*.mdf
 App_Data/*.ldf
 
+src/*/Scripts/_references.js
+
 
 #LightSwitch generated files
 GeneratedArtifacts/
@@ -155,4 +160,3 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
-*nsb_log_*.txt
