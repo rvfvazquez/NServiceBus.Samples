@@ -1,9 +1,11 @@
-﻿using NServiceBus;
+﻿using NSB12SampleMessages;
+using NServiceBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Topics.Radical;
 
 namespace NSB12SampleSender
 {
@@ -19,12 +21,16 @@ namespace NSB12SampleSender
 
 			using( var bus = Bus.Create( cfg ).Start() )
 			{
-				bus.Send( new NSB12SampleMessages.MyMessage() 
-				{ 
-					Content = "This is the message content" 
+				Logic.Run( setup =>
+				{
+					setup.DefineAction( ConsoleKey.S, "Sends a new message.", () =>
+					{
+						bus.Send( new MyMessage()
+						{
+							Content = "this is from sender :-)"
+						} );
+					} );
 				} );
-
-				Console.Read();
 			}
 		}
 	}
