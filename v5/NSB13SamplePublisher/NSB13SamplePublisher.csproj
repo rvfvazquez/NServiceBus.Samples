@@ -99,6 +99,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogicEngine\LogicEngine.csproj">
+      <Project>{4675dbb4-d24a-4d4f-9310-5edc646ac06b}</Project>
+      <Name>LogicEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSB13SampleMessages\NSB13SampleMessages.csproj">
       <Project>{9aa70712-2c40-4f99-ab2e-41122d78070e}</Project>
       <Name>NSB13SampleMessages</Name>

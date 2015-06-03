@@ -128,6 +128,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "19 - ServiceControlEvents",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSB19ServiceControlEvents", "NSB19ServiceControlEvents\NSB19ServiceControlEvents.csproj", "{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicEngine", "LogicEngine\LogicEngine.csproj", "{4675DBB4-D24A-4D4F-9310-5EDC646AC06B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -294,6 +296,10 @@ Global
 		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F7B3409-6A81-41CD-88AC-43B5254A5D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4675DBB4-D24A-4D4F-9310-5EDC646AC06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4675DBB4-D24A-4D4F-9310-5EDC646AC06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4675DBB4-D24A-4D4F-9310-5EDC646AC06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4675DBB4-D24A-4D4F-9310-5EDC646AC06B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

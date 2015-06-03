@@ -32,12 +32,16 @@ namespace NSB13SamplePublisher
 
 			using( var bus = Bus.Create( cfg ).Start() )
 			{
-				bus.Publish<ISomethingHappened>( e => 
+				Logic.Run( setup =>
 				{
-					e.Data = "These are the event data";
+					setup.DefineAction( ConsoleKey.P, "Publishes the event.", () =>
+					{
+						bus.Publish<ISomethingHappened>( e =>
+						{
+							e.Data = "These are the event data";
+						} );
+					} );
 				} );
-
-				Console.Read();
 			}
 		}
 	}

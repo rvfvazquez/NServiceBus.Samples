@@ -10,8 +10,6 @@ namespace NSB14Customer
 {
 	class Program
 	{
-		static IBus bus;
-
 		static void Main( string[] args )
 		{
 			var cfg = new BusConfiguration();
@@ -30,61 +28,30 @@ namespace NSB14Customer
 				.DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
 				.DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
 
-			bus = Bus.Create( cfg ).Start();
-			using( ConsoleColor.Red.AsForegroundColor() )
+			using( var bus = Bus.Create( cfg ).Start() )
 			{
-				Console.WriteLine( "Isn't this an amazing web site? :-D" );
-			}
-
-			Execute();
-		}
-
-		static ConsoleKey Ask()
-		{
-			Console.WriteLine();
-			Console.WriteLine();
-
-			var validResponses = new[] { ConsoleKey.S, ConsoleKey.C, ConsoleKey.E };
-			using( ConsoleColor.Green.AsForegroundColor() )
-			{
-				Console.WriteLine( "Press S to start a new order, or press X to exit." );
-			}
-			var response = Console.ReadKey().Key;
-
-			if( validResponses.Any( vr => vr == response ) )
-			{
-				Console.WriteLine();
-				Console.WriteLine();
-
-				return response;
-			}
-
-			Console.WriteLine( "unknown..." );
-			return Ask();
-		}
-
-		static void Execute()
-		{
-			var action = Ask();
-			if( action == ConsoleKey.S )
-			{
-				using( ConsoleColor.Cyan.AsForegroundColor() )
+				using( ConsoleColor.Red.AsForegroundColor() )
 				{
-					Console.WriteLine( "Publishing IShoppingCartCheckedout..." );
-
-					bus.Publish<IShoppingCartCheckedout>( e =>
-					{
-						e.CartId = Guid.NewGuid().ToString();
-					} );
-
-					Console.WriteLine( "IShoppingCartCheckedout published." );
+					Console.WriteLine( "Isn't this an amazing web site? :-D" );
 				}
 
-				Execute();
-			}
-			else if( action == ConsoleKey.X )
-			{
-				Console.WriteLine( "\tClosing..." );
+				Logic.Run( setup => 
+				{
+					setup.DefineAction( ConsoleKey.C, "Checkout", () => 
+					{
+						using( ConsoleColor.Cyan.AsForegroundColor() )
+						{
+							Console.WriteLine( "Publishing IShoppingCartCheckedout..." );
+
+							bus.Publish<IShoppingCartCheckedout>( e =>
+							{
+								e.CartId = Guid.NewGuid().ToString();
+							} );
+
+							Console.WriteLine( "IShoppingCartCheckedout published." );
+						}
+					} );
+				} );
 			}
 		}
 	}
