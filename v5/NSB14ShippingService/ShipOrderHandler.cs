@@ -7,6 +7,7 @@ using NSB14ShippingService.Messages.Commands;
 using NSB14ShippingService.Messages.Events;
 using NServiceBus;
 using Topics.Radical;
+using Topics.Radical.Helpers;
 
 namespace NSB14ShippingService
 {
@@ -16,6 +17,16 @@ namespace NSB14ShippingService
 
 		public void Handle( ShipOrder message )
 		{
+            if( Program.IsDemoMode )
+            {
+                int rem;
+                Math.DivRem( DateTime.Now.Minute, 2, out rem );
+                if( rem == 0 )
+                {
+                    throw new Exception( "Some randomly evil code..." );
+                }
+            }
+
 			using( ConsoleColor.Cyan.AsForegroundColor() )
 			{
 				Console.WriteLine( "Shipping order {0}...", message.OrderId );
