@@ -3,13 +3,23 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Embedded;
 using System;
+using Topics.Radical.Helpers;
 namespace NSB14OrderManager
 {
 	class Program
 	{
-		static void Main( string[] args )
-		{
+        public static Boolean IsDemoMode { get; private set; }
+
+        static void Main( string[] args )
+        {
+            var cmdLine = CommandLine.GetCurrent();
+            Program.IsDemoMode = cmdLine.Contains( "demo" );
+
 			var cfg = new BusConfiguration();
+
+            cfg.UniquelyIdentifyRunningInstance()
+                .UsingNames( "OrderManager", Environment.MachineName );
+
 			cfg.EnableInstallers();
 
 			var embeddedSore = new EmbeddableDocumentStore

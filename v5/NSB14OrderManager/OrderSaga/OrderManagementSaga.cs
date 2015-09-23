@@ -49,7 +49,7 @@ namespace NSB14OrderManager.OrderSaga
 
 				Console.WriteLine( "Collect items request sent..." );
 
-				this.RequestTimeout( TimeSpan.FromSeconds( 10 ), new ItemCollectionTimeout()
+				this.RequestTimeout( TimeSpan.FromSeconds( 5 ), new ItemCollectionTimeout()
 				{
 					OrderId = this.Data.OrderId
 				} );
