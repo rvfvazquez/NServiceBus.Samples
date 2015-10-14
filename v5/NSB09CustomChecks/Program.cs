@@ -14,7 +14,7 @@ namespace NSB09CustomChecks
 		static void Main( string[] args )
 		{
 			var cfg = new BusConfiguration();
-
+			cfg.EnableInstallers();
 			cfg.UsePersistence<InMemoryPersistence>();
 			cfg.Conventions()
 				.DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) );

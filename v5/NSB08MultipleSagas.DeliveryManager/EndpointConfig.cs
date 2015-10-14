@@ -14,7 +14,7 @@ namespace NSB08MultipleSagas.DeliveryManager
         {
 			configuration.EndpointName( this.GetType().Namespace.Split( '.' ).Last() );
 			configuration.UsePersistence<InMemoryPersistence>();
-
+			configuration.EnableInstallers();
 			configuration.Conventions()
 				.DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Messages" ) )
 				.DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )

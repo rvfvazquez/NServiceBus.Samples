@@ -12,7 +12,7 @@ namespace NSB19ServiceControlEvents
 		static void Main( string[] args )
 		{
 			var cfg = new BusConfiguration();
-
+			cfg.EnableInstallers();
 			cfg.UseSerialization<JsonSerializer>();
 			cfg.UsePersistence<InMemoryPersistence>();
 			cfg.Conventions()
