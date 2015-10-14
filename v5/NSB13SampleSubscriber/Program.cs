@@ -14,6 +14,7 @@ namespace NSB13SampleSubscriber
 		static void Main( string[] args )
 		{
 			var cfg = new BusConfiguration();
+			cfg.EnableInstallers();
 
 			var embeddedSore = new EmbeddableDocumentStore
 			{

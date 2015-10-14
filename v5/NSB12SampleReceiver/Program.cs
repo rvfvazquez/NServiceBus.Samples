@@ -14,6 +14,8 @@ namespace NSB12SampleReceiver
 			var cfg = new BusConfiguration();
 
 			cfg.UsePersistence<InMemoryPersistence>();
+			cfg.EnableInstallers();
+
 			cfg.Conventions()
 				.DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
 
