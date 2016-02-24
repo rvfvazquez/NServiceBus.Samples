@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace NSB18HandlersSortOrder.Handlers
 {
-	class ValidationHandler : NServiceBus.IHandleMessages<Object>
-	{
-		public void Handle( object message )
-		{
-			
-		}
-	}
+    class ValidationHandler : NServiceBus.IHandleMessages<Object>
+    {
+        public void Handle( object message )
+        {
+            
+        }
+    }
 }

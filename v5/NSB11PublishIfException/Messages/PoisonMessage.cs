@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NSB11PublishIfException.Messages
 {
-	public class PoisonMessage : IMessage
-	{
-	}
+    public class PoisonMessage : IMessage
+    {
+    }
 }

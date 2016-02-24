@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NSB11PublishIfException.Messages
 {
-	public interface FailedEvent : IEvent
-	{
-	}
+    public interface FailedEvent : IEvent
+    {
+    }
 }

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace NSB18HandlersSortOrder.Sagas
 {
-	public class SampleSagaData : ContainSagaData
-	{
-		public String Sample { get; set; }
-	}
+    public class SampleSagaData : ContainSagaData
+    {
+        public String Sample { get; set; }
+    }
 }

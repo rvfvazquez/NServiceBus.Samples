@@ -8,6 +8,6 @@ namespace NSB14Customer.Messages.Events
 {
     public interface IShoppingCartCheckedout
     {
-		String CartId { get; set; }
+        String CartId { get; set; }
     }
 }

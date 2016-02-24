@@ -8,14 +8,14 @@ using Topics.Radical;
 
 namespace NSB14CustomerCare
 {
-	class OrderProcessingDelayedHandler : NServiceBus.IHandleMessages<IOrderProcessingDelayed>
-	{
-		public void Handle( IOrderProcessingDelayed message )
-		{
-			using ( ConsoleColor.DarkYellow.AsForegroundColor() ) 
-			{
-				Console.WriteLine("We should send a gift to the customer...the order has been dalyed.");
-			}
-		}
-	}
+    class OrderProcessingDelayedHandler : NServiceBus.IHandleMessages<IOrderProcessingDelayed>
+    {
+        public void Handle( IOrderProcessingDelayed message )
+        {
+            using ( ConsoleColor.DarkYellow.AsForegroundColor() ) 
+            {
+                Console.WriteLine("We should send a gift to the customer...the order has been dalyed.");
+            }
+        }
+    }
 }

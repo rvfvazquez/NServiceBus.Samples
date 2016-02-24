@@ -11,12 +11,12 @@ using Topics.Radical.Helpers;
 
 namespace NSB14ShippingService
 {
-	class ShipOrderHandler : NServiceBus.IHandleMessages<ShipOrder>
-	{
-		public IBus Bus { get; set; }
+    class ShipOrderHandler : NServiceBus.IHandleMessages<ShipOrder>
+    {
+        public IBus Bus { get; set; }
 
-		public void Handle( ShipOrder message )
-		{
+        public void Handle( ShipOrder message )
+        {
             if( Program.IsDemoMode )
             {
                 int rem;
@@ -27,17 +27,17 @@ namespace NSB14ShippingService
                 }
             }
 
-			using( ConsoleColor.Cyan.AsForegroundColor() )
-			{
-				Console.WriteLine( "Shipping order {0}...", message.OrderId );
+            using( ConsoleColor.Cyan.AsForegroundColor() )
+            {
+                Console.WriteLine( "Shipping order {0}...", message.OrderId );
 
-				this.Bus.Publish<IOrderShipped>( e =>
-				{
-					e.OrderId = message.OrderId;
-				} );
+                this.Bus.Publish<IOrderShipped>( e =>
+                {
+                    e.OrderId = message.OrderId;
+                } );
 
-				Console.WriteLine( "Order shipped." );
-			}
-		}
-	}
+                Console.WriteLine( "Order shipped." );
+            }
+        }
+    }
 }

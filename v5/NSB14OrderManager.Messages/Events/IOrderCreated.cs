@@ -8,6 +8,6 @@ namespace NSB14OrderManager.Messages.Events
 {
     public interface IOrderCreated
     {
-		string OrderId { get; set; }
-	}
+        string OrderId { get; set; }
+    }
 }

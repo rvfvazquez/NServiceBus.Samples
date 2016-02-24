@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages.Commands
 {
-	public class SubmitOrderPaymentRequest
-	{
-		public String OrderId { get; set; }
-	}
+    public class SubmitOrderPaymentRequest
+    {
+        public String OrderId { get; set; }
+    }
 }

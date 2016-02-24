@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace NSB18HandlersSortOrder.Handlers
 {
-	class SecurityHandler : NServiceBus.IHandleMessages<Object>
-	{
-		public void Handle( object message )
-		{
+    class SecurityHandler : NServiceBus.IHandleMessages<Object>
+    {
+        public void Handle( object message )
+        {
 
-		}
-	}
+        }
+    }
 }

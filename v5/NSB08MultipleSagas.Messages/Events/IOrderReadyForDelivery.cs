@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages.Events
 {
-	public interface IOrderReadyForDelivery
-	{
-		String OrderId { get; set; }
-	}
+    public interface IOrderReadyForDelivery
+    {
+        String OrderId { get; set; }
+    }
 }

@@ -8,14 +8,14 @@ using Topics.Radical;
 
 namespace NSB14CustomerCare
 {
-	class OrderShippedHandler : NServiceBus.IHandleMessages<IOrderShipped>
-	{
-		public void Handle( IOrderShipped message )
-		{
-			using ( ConsoleColor.Magenta.AsForegroundColor() )
-			{
-				Console.WriteLine( "We should start a new Saga here to collect feedback." );
-			}
-		}
-	}
+    class OrderShippedHandler : NServiceBus.IHandleMessages<IOrderShipped>
+    {
+        public void Handle( IOrderShipped message )
+        {
+            using ( ConsoleColor.Magenta.AsForegroundColor() )
+            {
+                Console.WriteLine( "We should start a new Saga here to collect feedback." );
+            }
+        }
+    }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NSB05DataBus.Commands
 {
-	public class MessageWithLargePayload
-	{
-		public string SomeProperty { get; set; }
-		public byte[] LargeBlob { get; set; }
-	}
+    public class MessageWithLargePayload
+    {
+        public string SomeProperty { get; set; }
+        public byte[] LargeBlob { get; set; }
+    }
 }

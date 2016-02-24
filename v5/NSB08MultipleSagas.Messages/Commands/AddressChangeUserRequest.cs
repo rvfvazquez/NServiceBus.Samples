@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages.Commands
 {
-	public class AddressChangeUserRequest
-	{
-		public string DeliveryId { get; set; }
-	}
+    public class AddressChangeUserRequest
+    {
+        public string DeliveryId { get; set; }
+    }
 }

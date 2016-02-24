@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NSB06Retries.Messages.Commands
 {
-	public class SampleCommand
-	{
-	}
+    public class SampleCommand
+    {
+    }
 }

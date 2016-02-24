@@ -12,7 +12,7 @@ namespace NSB14OrderManager.OrderSaga
         [Unique]
         public String OrderId { get; set; }
 
-		public String CartId { get; set; }
+        public String CartId { get; set; }
 
 
         public Boolean CollectionCompleted { get; set; }

@@ -27,7 +27,7 @@ class ProgramService : ServiceBase
     protected override void OnStart(string[] args)
     {
         var busConfiguration = new BusConfiguration();
-		busConfiguration.EndpointName( "NSB16WcfHosting" );
+        busConfiguration.EndpointName( "NSB16WcfHosting" );
         busConfiguration.UseSerialization<JsonSerializer>();
 
         if (Environment.UserInteractive && Debugger.IsAttached)

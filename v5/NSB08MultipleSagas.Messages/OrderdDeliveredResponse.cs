@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages
 {
-	public class OrderdDeliveredResponse
-	{
-		public String OrderId { get; set; }
+    public class OrderdDeliveredResponse
+    {
+        public String OrderId { get; set; }
 
-		public String ShoppingCartId{ get; set; }
-	}
+        public String ShoppingCartId{ get; set; }
+    }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages
 {
-	public class DeliveAddressChangeResponse
-	{
-		public string DeliveryId { get; set; }
-	}
+    public class DeliveAddressChangeResponse
+    {
+        public string DeliveryId { get; set; }
+    }
 }

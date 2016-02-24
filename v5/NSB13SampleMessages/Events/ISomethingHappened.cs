@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB13SampleMessages.Events
 {
-	public interface ISomethingHappened
-	{
-		String Data { get; set; }
-	}
+    public interface ISomethingHappened
+    {
+        String Data { get; set; }
+    }
 }

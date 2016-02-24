@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.OrderFrontEnd
 {
-	class OrderdDeliveredResponseHandler : NServiceBus.IHandleMessages<OrderdDeliveredResponse>
-	{
-		public void Handle( OrderdDeliveredResponse message )
-		{
-			
-		}
-	}
+    class OrderdDeliveredResponseHandler : NServiceBus.IHandleMessages<OrderdDeliveredResponse>
+    {
+        public void Handle( OrderdDeliveredResponse message )
+        {
+            
+        }
+    }
 }

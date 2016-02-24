@@ -10,16 +10,16 @@ namespace NSB17WebApiInjection.Controllers
 {
     public class SampleController : ApiController
     {
-		IBus bus;
+        IBus bus;
 
-		public SampleController( IBus bus)
-		{
-			this.bus = bus;
-		}
+        public SampleController( IBus bus)
+        {
+            this.bus = bus;
+        }
 
-		public string Get() 
-		{
-			return "Hi, there";
-		}
+        public string Get() 
+        {
+            return "Hi, there";
+        }
     }
 }

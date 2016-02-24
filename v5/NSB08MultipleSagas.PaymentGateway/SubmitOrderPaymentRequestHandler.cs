@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.PaymentGateway
 {
-	public class SubmitOrderPaymentRequestHandler : IHandleMessages<SubmitOrderPaymentRequest>
-	{
-		public IBus Bus { get; set; }
+    public class SubmitOrderPaymentRequestHandler : IHandleMessages<SubmitOrderPaymentRequest>
+    {
+        public IBus Bus { get; set; }
 
-		public void Handle( SubmitOrderPaymentRequest message )
-		{
-			this.Bus.Reply( new OrderPaymentResponse()
-			{
-				OrderId = message.OrderId,
-				Payed = true
-			} );
-		}
-	}
+        public void Handle( SubmitOrderPaymentRequest message )
+        {
+            this.Bus.Reply( new OrderPaymentResponse()
+            {
+                OrderId = message.OrderId,
+                Payed = true
+            } );
+        }
+    }
 }

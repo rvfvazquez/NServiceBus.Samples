@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages.Events
 {
-	public interface ICheckoutRequested
-	{
-		String ShoppingCartId { get; set; }
-	}
+    public interface ICheckoutRequested
+    {
+        String ShoppingCartId { get; set; }
+    }
 }

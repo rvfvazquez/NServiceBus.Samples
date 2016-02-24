@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages
 {
-	public class OrderPaymentResponse
-	{
-		public String OrderId { get; set; }
-		public Boolean Payed { get; set; }
-	}
+    public class OrderPaymentResponse
+    {
+        public String OrderId { get; set; }
+        public Boolean Payed { get; set; }
+    }
 }

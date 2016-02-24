@@ -9,6 +9,6 @@ namespace NSB14WarehouseService.Messages.Commands
     public class CollectItems
     {
         public String OrderId { get; set; }
-		public String CartId { get; set; }
+        public String CartId { get; set; }
     }
 }

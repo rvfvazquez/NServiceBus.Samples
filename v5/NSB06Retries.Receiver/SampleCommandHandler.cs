@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace NSB06Retries.Receiver
 {
-	class SampleCommandHandler : NServiceBus.IHandleMessages<SampleCommand>
-	{
-		public void Handle( SampleCommand message )
-		{
-			throw new ArgumentException( "Something went wrong." );
-		}
-	}
+    class SampleCommandHandler : NServiceBus.IHandleMessages<SampleCommand>
+    {
+        public void Handle( SampleCommand message )
+        {
+            throw new ArgumentException( "Something went wrong." );
+        }
+    }
 }

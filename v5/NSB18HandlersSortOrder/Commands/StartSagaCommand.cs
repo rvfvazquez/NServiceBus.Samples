@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NSB18HandlersSortOrder.Commands
 {
-	public class StartSagaCommand
-	{
-		public String Sample { get; set; }
-	}
+    public class StartSagaCommand
+    {
+        public String Sample { get; set; }
+    }
 }

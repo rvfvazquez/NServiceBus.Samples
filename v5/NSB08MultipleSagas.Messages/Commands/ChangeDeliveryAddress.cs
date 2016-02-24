@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace NSB08MultipleSagas.Messages.Commands
 {
-	public class ChangeDeliveryAddress
-	{
-		public string DeliveryId { get; set; }
+    public class ChangeDeliveryAddress
+    {
+        public string DeliveryId { get; set; }
 
-		public string OrderId { get; set; }
-	}
+        public string OrderId { get; set; }
+    }
 }

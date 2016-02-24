@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace NSB18HandlersSortOrder.Sagas
 {
-	public class SampleSaga :
-		Saga<SampleSagaData>,
-		IAmStartedByMessages<Commands.StartSagaCommand>
-	{
-		protected override void ConfigureHowToFindSaga( SagaPropertyMapper<SampleSagaData> mapper )
-		{
-			
-		}
+    public class SampleSaga :
+        Saga<SampleSagaData>,
+        IAmStartedByMessages<Commands.StartSagaCommand>
+    {
+        protected override void ConfigureHowToFindSaga( SagaPropertyMapper<SampleSagaData> mapper )
+        {
+            
+        }
 
-		public void Handle( Commands.StartSagaCommand message )
-		{
-			this.MarkAsComplete();
-		}
-	}
+        public void Handle( Commands.StartSagaCommand message )
+        {
+            this.MarkAsComplete();
+        }
+    }
 }

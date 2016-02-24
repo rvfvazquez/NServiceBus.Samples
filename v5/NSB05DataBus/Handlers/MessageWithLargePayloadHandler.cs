@@ -8,14 +8,14 @@ using Topics.Radical;
 
 namespace NSB05DataBus.Handlers
 {
-	class MessageWithLargePayloadHandler : NServiceBus.IHandleMessages<MessageWithLargePayload>
-	{
-		public void Handle( MessageWithLargePayload message )
-		{
-			using( ConsoleColor.Green.AsForegroundColor() ) 
-			{
-				Console.WriteLine( "Handled" );
-			}
-		}
-	}
+    class MessageWithLargePayloadHandler : NServiceBus.IHandleMessages<MessageWithLargePayload>
+    {
+        public void Handle( MessageWithLargePayload message )
+        {
+            using( ConsoleColor.Green.AsForegroundColor() ) 
+            {
+                Console.WriteLine( "Handled" );
+            }
+        }
+    }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace NSB11PublishIfException
 {
-	class FailedEventHandler: NServiceBus.IHandleMessages<Messages.FailedEvent>
-	{
-		public void Handle( Messages.FailedEvent message )
-		{
-			Console.WriteLine( "Messages.FailedEvent" );
-		}
-	}
+    class FailedEventHandler: NServiceBus.IHandleMessages<Messages.FailedEvent>
+    {
+        public void Handle( Messages.FailedEvent message )
+        {
+            Console.WriteLine( "Messages.FailedEvent" );
+        }
+    }
 }

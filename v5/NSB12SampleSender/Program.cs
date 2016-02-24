@@ -9,31 +9,31 @@ using Topics.Radical;
 
 namespace NSB12SampleSender
 {
-	class Program
-	{
-		static void Main( string[] args )
-		{
-			var cfg = new BusConfiguration();
-			cfg.EnableInstallers();
+    class Program
+    {
+        static void Main( string[] args )
+        {
+            var cfg = new BusConfiguration();
+            cfg.EnableInstallers();
 
-			cfg.UsePersistence<InMemoryPersistence>();
+            cfg.UsePersistence<InMemoryPersistence>();
 
-			cfg.Conventions()
-				.DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
+            cfg.Conventions()
+                .DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
 
-			using( var bus = Bus.Create( cfg ).Start() )
-			{
-				Logic.Run( setup =>
-				{
-					setup.DefineAction( ConsoleKey.S, "Sends a new message.", () =>
-					{
-						bus.Send( new MyMessage()
-						{
-							Content = "this is from sender :-)"
-						} );
-					} );
-				} );
-			}
-		}
-	}
+            using( var bus = Bus.Create( cfg ).Start() )
+            {
+                Logic.Run( setup =>
+                {
+                    setup.DefineAction( ConsoleKey.S, "Sends a new message.", () =>
+                    {
+                        bus.Send( new MyMessage()
+                        {
+                            Content = "this is from sender :-)"
+                        } );
+                    } );
+                } );
+            }
+        }
+    }
 }

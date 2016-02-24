@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace NSB12SampleReceiver
 {
-	class Program
-	{
-		static void Main( string[] args )
-		{
-			var cfg = new BusConfiguration();
+    class Program
+    {
+        static void Main( string[] args )
+        {
+            var cfg = new BusConfiguration();
 
-			cfg.UsePersistence<InMemoryPersistence>();
-			cfg.EnableInstallers();
+            cfg.UsePersistence<InMemoryPersistence>();
+            cfg.EnableInstallers();
 
-			cfg.Conventions()
-				.DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
+            cfg.Conventions()
+                .DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
 
-			using( var bus = Bus.Create( cfg ).Start() )
-			{
-				Console.Read();
-			}
-		}
-	}
+            using( var bus = Bus.Create( cfg ).Start() )
+            {
+                Console.Read();
+            }
+        }
+    }
 }
