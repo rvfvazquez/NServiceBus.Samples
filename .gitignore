@@ -6,6 +6,7 @@
 *.user
 *.sln.docstates
 *.sln.ide/
+.vs/
 
 # NServiceBus Logs
 nsb_log_*.txt
