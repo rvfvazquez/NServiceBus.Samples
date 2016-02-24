@@ -13,7 +13,7 @@ namespace NSB01SelfHost
         static void Main( string[] args )
         {
             var cfg = new BusConfiguration();
-			cfg.EnableInstallers();
+            cfg.EnableInstallers();
 
             cfg.UsePersistence<InMemoryPersistence>();
             cfg.Conventions()
