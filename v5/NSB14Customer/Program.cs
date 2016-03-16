@@ -20,7 +20,7 @@ namespace NSB14Customer
             Program.IsDemoMode = cmdLine.Contains( "demo" );
 
             var cfg = new BusConfiguration();
-
+            cfg.EnableInstallers();
             cfg.UniquelyIdentifyRunningInstance()
                 .UsingNames( "Customer", Environment.MachineName );
 

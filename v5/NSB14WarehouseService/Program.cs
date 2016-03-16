@@ -17,7 +17,7 @@ namespace NSB14WarehouseService
             Program.IsDemoMode = cmdLine.Contains( "demo" );
 
             var cfg = new BusConfiguration();
-
+            cfg.EnableInstallers();
             cfg.UniquelyIdentifyRunningInstance()
                 .UsingNames( "Warehouse", Environment.MachineName );
 
