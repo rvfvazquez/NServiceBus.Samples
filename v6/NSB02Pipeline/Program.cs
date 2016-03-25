@@ -1,21 +1,36 @@
+using NServiceBus;
+using NServiceBus.Pipeline;
+using NServiceBus.Pipeline.Contexts;
+using System;
+using System.Threading.Tasks;
 
 namespace NSB02Pipeline
 {
-    using NServiceBus;
-    using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
-
-    /*
-        This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
-        can be found here: http://particular.net/articles/the-nservicebus-host
-    */
-    public class EndpointConfig : IConfigureThisEndpoint
+    class Program
     {
-        public void Customize(EndpointConfiguration configuration)
+        static void Main(string[] args)
         {
-            configuration.UsePersistence<InMemoryPersistence>();
-            configuration.Pipeline.Register("MyStep", typeof(MyBehavior), "behavior description");
-            configuration.Pipeline.Register<MyOtherBehaviorSetup>();
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
+        {
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
+            cfg.EnableInstallers();
+
+            cfg.UsePersistence<InMemoryPersistence>();
+            cfg.Conventions()
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Commands"))
+                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Events"));
+
+            cfg.Pipeline.Register("MyStep", typeof(MyBehavior), "behavior description");
+            cfg.Pipeline.Register<MyOtherBehaviorSetup>();
+
+            var endpoint = await Endpoint.Start(cfg);
+
+            Console.Read();
+
+            await endpoint.Stop();
         }
     }
 
