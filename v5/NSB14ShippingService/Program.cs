@@ -16,7 +16,7 @@ namespace NSB14ShippingService
             Program.IsDemoMode = cmdLine.Contains( "demo" );
 
             var cfg = new BusConfiguration();
-
+            cfg.EnableInstallers();
             cfg.UniquelyIdentifyRunningInstance()
                 .UsingNames( "Shipping", Environment.MachineName );
 

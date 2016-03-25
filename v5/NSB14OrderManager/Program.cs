@@ -16,7 +16,7 @@ namespace NSB14OrderManager
             Program.IsDemoMode = cmdLine.Contains( "demo" );
 
             var cfg = new BusConfiguration();
-
+            cfg.EnableInstallers();
             cfg.UniquelyIdentifyRunningInstance()
                 .UsingNames( "OrderManager", Environment.MachineName );
 
