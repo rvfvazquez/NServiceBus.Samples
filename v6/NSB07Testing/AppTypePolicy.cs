@@ -1,9 +1,11 @@
-﻿using NServiceBus.Saga;
+﻿using NServiceBus;
+using NServiceBus.Sagas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NSB07Testing.Messages;
 
 namespace NSB07Testing.Sagas
 {
@@ -11,35 +13,35 @@ namespace NSB07Testing.Sagas
         IAmStartedByMessages<Messages.AppTypeRequest>,
         IAmStartedByMessages<Messages.SetAppType>
     {
-
-        protected override void ConfigureHowToFindSaga( SagaPropertyMapper<AppTypePolicyData> mapper )
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<AppTypePolicyData> mapper)
         {
-            mapper.ConfigureMapping<Messages.SetAppType>( r => r.AppId ).ToSaga( r => r.AppId );
-            mapper.ConfigureMapping<Messages.AppTypeRequest>( r => r.AppId ).ToSaga( r => r.AppId );
+            mapper.ConfigureMapping<Messages.SetAppType>(r => r.AppId).ToSaga(r => r.AppId);
+            mapper.ConfigureMapping<Messages.AppTypeRequest>(r => r.AppId).ToSaga(r => r.AppId);
         }
 
-        public void Handle( Messages.AppTypeRequest message )
+        public async Task Handle(AppTypeRequest message, IMessageHandlerContext context)
         {
             this.Data.AppId = message.AppId;
 
             var response = new Messages.AppTypeResponse();
             response.AppId = this.Data.AppId;
             response.AppType = this.Data.AppType;
-            this.Bus.Reply( response );
 
+            await context.Reply(response);
         }
 
-        public void Handle( Messages.SetAppType message )
+        public Task Handle(SetAppType message, IMessageHandlerContext context)
         {
             this.Data.AppId = message.AppId;
             this.Data.AppType = Messages.AppType.Known;
+
+            return Task.FromResult(false);
         }
     }
 
 
     public class AppTypePolicyData : ContainSagaData
     {
-        [Unique]
         public int AppId { get; set; }
         public Messages.AppType AppType { get; set; }
 
