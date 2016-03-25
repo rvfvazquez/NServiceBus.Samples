@@ -18,6 +18,11 @@ namespace NSB21WebAPIHosting
     {
         static void Main(string[] args)
         {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
+        {
             var container = new WindsorContainer();
 
             var allControllers = Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(ApiController).IsAssignableFrom(t));
@@ -27,7 +32,7 @@ namespace NSB21WebAPIHosting
             }
 
 
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
 
             cfg.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
             cfg.UniquelyIdentifyRunningInstance()
@@ -43,10 +48,11 @@ namespace NSB21WebAPIHosting
 
             using(var webApiHost = StartWebAPI(new CustomDependencyResolver(container)))
             {
-                using(var bus = Bus.Create(cfg).Start())
-                {
-                    Console.Read();
-                }
+                var endpoint = await Endpoint.Start(cfg);
+
+                Console.Read();
+
+                await endpoint.Stop();
             }
         }
 

@@ -10,9 +10,9 @@ namespace NSB21WebAPIHosting.Controllers
 {
     public class SamplesController : ApiController
     {
-        IBus bus;
+        IEndpointInstance bus;
 
-        public SamplesController(IBus bus)
+        public SamplesController(IEndpointInstance bus)
         {
             this.bus = bus;
         }
