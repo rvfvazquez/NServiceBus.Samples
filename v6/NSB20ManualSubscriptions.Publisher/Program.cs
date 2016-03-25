@@ -8,7 +8,12 @@ namespace NSB20ManualSubscriptions.Publisher
 {
     class Program
     {
-        static void Main( string[] args )
+        static void Main(string[] args)
+        {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
         {
             var cfg = new BusConfiguration();
 

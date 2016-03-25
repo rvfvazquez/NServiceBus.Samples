@@ -12,7 +12,12 @@ namespace NSB15CustomContainer
 {
     class Program
     {
-        static void Main( string[] args )
+        static void Main(string[] args)
+        {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
         {
             var bootstrapper = new WindsorBootstrapper
             (

@@ -12,7 +12,12 @@ namespace NSB13SamplePublisher
 {
     class Program
     {
-        static void Main( string[] args )
+        static void Main(string[] args)
+        {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
         {
             var cfg = new BusConfiguration();
             cfg.EnableInstallers();

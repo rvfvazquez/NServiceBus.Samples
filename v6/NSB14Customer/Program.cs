@@ -14,7 +14,12 @@ namespace NSB14Customer
     {
         public static Boolean IsDemoMode { get; private set; }
 
-        static void Main( string[] args )
+        static void Main(string[] args)
+        {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
         {
             var cmdLine = CommandLine.GetCurrent();
             Program.IsDemoMode = cmdLine.Contains( "demo" );
