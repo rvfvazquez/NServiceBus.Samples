@@ -13,7 +13,6 @@ namespace NSB07Testing.Tests
             var request = new Messages.AppTypeRequest();
             request.AppId = 111;
 
-            Test.Initialize();
             Test.Saga<Sagas.AppTypePolicy>()
                 .ExpectReply<Messages.AppTypeResponse>( r => r.AppType == Messages.AppType.Unknown )
                 .When( r => r.Handle( request ) );
@@ -27,8 +26,7 @@ namespace NSB07Testing.Tests
 
             var appReceivedEvent = new Messages.SetAppType();
             appReceivedEvent.AppId = 111;
-
-            Test.Initialize();
+            
             Test.Saga<Sagas.AppTypePolicy>()
                 .When( r => r.Handle( appReceivedEvent ) )
                 .ExpectReply<Messages.AppTypeResponse>( r => r.AppType == Messages.AppType.Known )
@@ -45,7 +43,6 @@ namespace NSB07Testing.Tests
             var appReceivedEvent = new Messages.SetAppType();
             appReceivedEvent.AppId = 222;
 
-            Test.Initialize();
             Test.Saga<Sagas.AppTypePolicy>()
                 .When( r => r.Handle( appReceivedEvent ) )
                 .ExpectReply<Messages.AppTypeResponse>( r => r.AppType == Messages.AppType.Unknown )
