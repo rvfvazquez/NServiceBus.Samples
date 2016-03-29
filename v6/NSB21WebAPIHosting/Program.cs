@@ -48,11 +48,11 @@ namespace NSB21WebAPIHosting
 
             using(var webApiHost = StartWebAPI(new CustomDependencyResolver(container)))
             {
-                var endpoint = await Endpoint.Start(cfg);
+                var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
 
                 Console.Read();
 
-                await endpoint.Stop();
+                await endpoint.Stop().ConfigureAwait(false);
             }
         }
 

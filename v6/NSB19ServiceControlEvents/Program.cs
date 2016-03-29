@@ -30,12 +30,12 @@ namespace NSB19ServiceControlEvents
                     || ( t.Namespace != null && t.Namespace.StartsWith( "ServiceControl.Contracts" ) ) );
 
 
-            var endpoint = await Endpoint.Start(cfg);
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
 
             Console.WriteLine("Endpoint is running...");
             Console.Read();
 
-            await endpoint.Stop();
+            await endpoint.Stop().ConfigureAwait(false);
 
             Console.WriteLine("Endpoint stopped.");
             Console.Read();

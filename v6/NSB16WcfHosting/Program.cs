@@ -23,11 +23,11 @@ namespace NSB16WcfHosting
 
             cfg.EnableInstallers();
 
-            var endpoint = await Endpoint.Start(cfg);
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
 
             Console.Read();
 
-            await endpoint.Stop();
+            await endpoint.Stop().ConfigureAwait(false);
         }
 
     }

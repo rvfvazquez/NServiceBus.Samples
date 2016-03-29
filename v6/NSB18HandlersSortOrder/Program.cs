@@ -44,16 +44,16 @@ namespace NSB18HandlersSortOrder
                 typeof(ValidationHandler)
             );
 
-            var endpoint = await Endpoint.Start(cfg);
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
 
             await endpoint.SendLocal(new Commands.StartSagaCommand()
             {
                 Sample = "Hi, there!"
-            });
+            }).ConfigureAwait(false);
 
             Console.Read();
 
-            await endpoint.Stop();
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }
