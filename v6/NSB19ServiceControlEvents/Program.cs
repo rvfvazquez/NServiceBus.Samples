@@ -16,7 +16,7 @@ namespace NSB19ServiceControlEvents
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
             cfg.EnableInstallers();
             cfg.UseSerialization<JsonSerializer>();
             cfg.UsePersistence<InMemoryPersistence>();
@@ -29,13 +29,15 @@ namespace NSB19ServiceControlEvents
                     || ( t.Namespace != null && t.Namespace.EndsWith( ".Events" ) )
                     || ( t.Namespace != null && t.Namespace.StartsWith( "ServiceControl.Contracts" ) ) );
 
-            using( var bus = Bus.Create( cfg ).Start() )
-            {
-                Console.WriteLine( "Bus is running..." );
-                Console.Read();
-            }
 
-            Console.WriteLine( "Disposed" );
+            var endpoint = await Endpoint.Start(cfg);
+
+            Console.WriteLine("Endpoint is running...");
+            Console.Read();
+
+            await endpoint.Stop();
+
+            Console.WriteLine("Endpoint stopped.");
             Console.Read();
         }
     }
