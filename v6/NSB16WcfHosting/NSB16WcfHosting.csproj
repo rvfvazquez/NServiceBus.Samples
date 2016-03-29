@@ -55,12 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="IMySampleService.cs" />
     <Compile Include="MySampleService.cs" />
-    <Compile Include="ProgramService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WcfHost.cs" />
   </ItemGroup>

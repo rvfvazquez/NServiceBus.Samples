@@ -2,32 +2,40 @@
 using NServiceBus;
 using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
-class WcfHost : IWantToRunWhenBusStartsAndStops
+namespace NSB16WcfHosting
 {
-    ServiceHost host = null;
-
-    public void Start()
+    class WcfHost : IWantToRunWhenBusStartsAndStops
     {
-        this.host = new ServiceHost( typeof( MySampleService ) );
-        this.host.Open();
+        ServiceHost host = null;
 
-        Console.WriteLine("WCF Host started...");
-    }
-
-    public void Stop()
-    {
-        if(this.host != null && this.host.State == CommunicationState.Opened)
+        public Task Start(IMessageSession session)
         {
-            this.host.Close();
+            this.host = new ServiceHost(typeof(MySampleService));
+            this.host.Open();
+
+            Console.WriteLine("WCF Host started...");
+
+            return Task.CompletedTask;
         }
 
-        if( this.host != null ) 
+        public Task Stop(IMessageSession session)
         {
-            ( ( IDisposable )this.host ).Dispose();
-            this.host = null;
-        }
+            if(this.host != null && this.host.State == CommunicationState.Opened)
+            {
+                this.host.Close();
+            }
 
-        Console.WriteLine( "WCF Host stopped..." );
+            if(this.host != null)
+            {
+                ((IDisposable)this.host).Dispose();
+                this.host = null;
+            }
+
+            Console.WriteLine("WCF Host stopped...");
+
+            return Task.CompletedTask;
+        }
     }
 }
