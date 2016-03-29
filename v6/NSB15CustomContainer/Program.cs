@@ -2,11 +2,7 @@
 using NServiceBus;
 using Radical.Bootstrapper;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NSB15CustomContainer
 {
@@ -14,28 +10,23 @@ namespace NSB15CustomContainer
     {
         static void Main(string[] args)
         {
-            MainAsync(args).GetAwaiter().GetResult();
-        }
-
-        static async Task MainAsync(string[] args)
-        {
             var bootstrapper = new WindsorBootstrapper
             (
                 directory: AppDomain.CurrentDomain.BaseDirectory, //the directory where to look for assemblies
-                filter: "*.*" //the default filer is *.dll, but this is and exe so we need to include it to
+                filter: "*.*" //the default filer is *.dll, but this is and exe so we need to include it as well
             );
 
             //the bootstrap process will look for any class 
-            //the implements the IWindsorInstaller inetrface
+            //the implements the IWindsorInstaller interface
             //and is exported via MEF
             var container = bootstrapper.Boot();
 
-            var config = new BusConfiguration();
+            var config = new EndpointConfiguration(typeof(Program).Namespace);
             config.UsePersistence<InMemoryPersistence>();
-            config.UseContainer<NServiceBus.WindsorBuilder>( c =>
+            config.UseContainer<WindsorBuilder>(c =>
             {
-                c.ExistingContainer( container );
-            } );
+                c.ExistingContainer(container);
+            });
         }
     }
 
