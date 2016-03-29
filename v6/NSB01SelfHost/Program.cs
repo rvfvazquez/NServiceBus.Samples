@@ -25,11 +25,11 @@ namespace NSB01SelfHost
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Commands"))
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Events"));
 
-            var endpoint = await Endpoint.Start(cfg);
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
 
             Console.Read();
 
-            await endpoint.Stop();
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }
