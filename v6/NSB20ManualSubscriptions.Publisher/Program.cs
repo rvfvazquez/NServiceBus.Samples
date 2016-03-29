@@ -1,8 +1,6 @@
 ﻿using NServiceBus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace NSB20ManualSubscriptions.Publisher
 {
@@ -15,17 +13,18 @@ namespace NSB20ManualSubscriptions.Publisher
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
 
             cfg.UsePersistence<InMemoryPersistence>();
             cfg.Conventions()
-                .DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
-                .DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Commands"))
+                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Events"));
 
-            using( var bus = Bus.Create( cfg ).Start() )
-            {
-                Console.Read();
-            }
+            var endpoint = await Endpoint.Start(cfg);
+
+            Console.Read();
+
+            await endpoint.Stop();
         }
     }
 }

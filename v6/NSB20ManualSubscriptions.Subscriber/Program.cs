@@ -16,19 +16,20 @@ namespace NSB20ManualSubscriptions.Subscriber
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
 
             cfg.UsePersistence<InMemoryPersistence>();
             cfg.Conventions()
                 .DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
                 .DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
 
-            using( var bus = Bus.Create( cfg ).Start() )
-            {
-                bus.Subscribe<Messages.Events.IHaveDoneSomething>();
+            var endpoint = await Endpoint.Start(cfg);
 
-                Console.Read();
-            }
+            await endpoint.Subscribe<Messages.Events.IHaveDoneSomething>();
+
+            Console.Read();
+
+            await endpoint.Stop();
         }
     }
 }
