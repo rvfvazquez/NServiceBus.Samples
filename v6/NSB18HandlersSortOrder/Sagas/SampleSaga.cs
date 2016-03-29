@@ -1,24 +1,23 @@
-﻿using NServiceBus.Saga;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NServiceBus;
 using System.Threading.Tasks;
+using NSB18HandlersSortOrder.Commands;
 
 namespace NSB18HandlersSortOrder.Sagas
 {
     public class SampleSaga :
         Saga<SampleSagaData>,
-        IAmStartedByMessages<Commands.StartSagaCommand>
+        IAmStartedByMessages<StartSagaCommand>
     {
         protected override void ConfigureHowToFindSaga( SagaPropertyMapper<SampleSagaData> mapper )
         {
             
         }
 
-        public void Handle( Commands.StartSagaCommand message )
+        public Task Handle(StartSagaCommand message, IMessageHandlerContext context)
         {
             this.MarkAsComplete();
+
+            return Task.CompletedTask;
         }
     }
 }
