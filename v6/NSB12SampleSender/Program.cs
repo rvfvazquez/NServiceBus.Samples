@@ -18,7 +18,7 @@ namespace NSB12SampleSender
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
             cfg.EnableInstallers();
 
             cfg.UsePersistence<InMemoryPersistence>();
@@ -26,19 +26,20 @@ namespace NSB12SampleSender
             cfg.Conventions()
                 .DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
 
-            using( var bus = Bus.Create( cfg ).Start() )
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
+
+            Logic.Run(setup =>
             {
-                Logic.Run( setup =>
+                setup.DefineAction(ConsoleKey.S, "Sends a new message.", async () =>
                 {
-                    setup.DefineAction( ConsoleKey.S, "Sends a new message.", () =>
+                    await endpoint.Send(new MyMessage()
                     {
-                        bus.Send( new MyMessage()
-                        {
-                            Content = "this is from sender :-)"
-                        } );
-                    } );
-                } );
-            }
+                        Content = "this is from sender :-)"
+                    }).ConfigureAwait(false);
+                });
+            });
+
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }

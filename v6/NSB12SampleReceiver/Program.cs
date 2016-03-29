@@ -16,7 +16,7 @@ namespace NSB12SampleReceiver
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
 
             cfg.UsePersistence<InMemoryPersistence>();
             cfg.EnableInstallers();
@@ -24,10 +24,11 @@ namespace NSB12SampleReceiver
             cfg.Conventions()
                 .DefiningMessagesAs( t => t.Namespace != null && t.Namespace.EndsWith( "Messages" ) );
 
-            using( var bus = Bus.Create( cfg ).Start() )
-            {
-                Console.Read();
-            }
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
+
+            Console.Read();
+
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }

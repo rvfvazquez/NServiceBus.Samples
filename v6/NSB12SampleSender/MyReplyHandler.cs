@@ -11,14 +11,14 @@ namespace NSB12SampleSender
 {
     class MyReplyHandler : IHandleMessages<MyReply>
     {
-        public IBus Bus { get; set; }
-
-        public void Handle(MyReply message)
+        public Task Handle(MyReply message, IMessageHandlerContext context)
         {
-            using (ConsoleColor.Cyan.AsForegroundColor())
+            using(ConsoleColor.Cyan.AsForegroundColor())
             {
-                Console.WriteLine("Received MyReply from:  {0}", this.Bus.CurrentMessageContext.ReplyToAddress);
+                Console.WriteLine("Received MyReply from:  {0}", context.ReplyToAddress);
             }
+
+            return Task.CompletedTask;
         }
     }
 }

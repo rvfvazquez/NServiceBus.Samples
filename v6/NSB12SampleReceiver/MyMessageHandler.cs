@@ -11,20 +11,18 @@ namespace NSB12SampleReceiver
 {
     class MyMessageHandler : IHandleMessages<MyMessage>
     {
-        public IBus Bus { get; set; }
-
-        public void Handle(MyMessage message)
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            using (ConsoleColor.Cyan.AsForegroundColor())
+            using(ConsoleColor.Cyan.AsForegroundColor())
             {
-                Console.WriteLine("Sending MyReply to:  {0}", this.Bus.CurrentMessageContext.ReplyToAddress);
+                Console.WriteLine("Sending MyReply to:  {0}", context.ReplyToAddress);
 
                 var reply = new MyReply()
                 {
                     Content = "How you doing?"
                 };
 
-                this.Bus.Reply(reply);
+                await context.Reply(reply).ConfigureAwait(false);
 
                 Console.WriteLine("Reply sent.");
             }
