@@ -1,11 +1,7 @@
 ﻿using NSB13SampleMessages.Events;
 using NServiceBus;
-using NServiceBus.Persistence;
 using Raven.Client.Embedded;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NSB13SamplePublisher
@@ -19,36 +15,37 @@ namespace NSB13SamplePublisher
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
             cfg.EnableInstallers();
 
             var embeddedSore = new EmbeddableDocumentStore
             {
-                ResourceManagerId = new Guid( "{FDF958EB-7EE3-42F9-B757-E9836DF1F417}" ),
+                ResourceManagerId = new Guid("{FDF958EB-7EE3-42F9-B757-E9836DF1F417}"),
                 DataDirectory = @"~\RavenDB\Data"
             }.Initialize();
 
             cfg.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions()
-                .SetDefaultDocumentStore( embeddedSore );
+                .SetDefaultDocumentStore(embeddedSore);
 
             cfg.Conventions()
-                .DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
-                .DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
+                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Commands"))
+                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Events"));
 
-            using( var bus = Bus.Create( cfg ).Start() )
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
+
+            Logic.Run(setup =>
             {
-                Logic.Run( setup =>
+                setup.DefineAction(ConsoleKey.P, "Publishes the event.", async () =>
                 {
-                    setup.DefineAction( ConsoleKey.P, "Publishes the event.", () =>
+                    await endpoint.Publish<ISomethingHappened>(e =>
                     {
-                        bus.Publish<ISomethingHappened>( e =>
-                        {
-                            e.Data = "These are the event data";
-                        } );
-                    } );
-                } );
-            }
+                        e.Data = "These are the event data";
+                    }).ConfigureAwait(false);
+                });
+            });
+
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace NSB13SampleSubscriber
 
         static async Task MainAsync(string[] args)
         {
-            var cfg = new BusConfiguration();
+            var cfg = new EndpointConfiguration(typeof(Program).Namespace);
             cfg.EnableInstallers();
 
             var embeddedSore = new EmbeddableDocumentStore
@@ -35,10 +35,11 @@ namespace NSB13SampleSubscriber
                 .DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
                 .DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
 
-            using( var bus = Bus.Create( cfg ).Start() )
-            {
-                Console.Read();
-            }
+            var endpoint = await Endpoint.Start(cfg).ConfigureAwait(false);
+
+            Console.Read();
+
+            await endpoint.Stop().ConfigureAwait(false);
         }
     }
 }
