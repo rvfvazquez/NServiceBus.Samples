@@ -7,22 +7,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
-using System.Web.Routing;
 
 namespace NSB17WebApiInjection
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {
             var container = new WindsorContainer();
             container.Register( Component.For<Controllers.SampleController>() );
 
-            var busConfig = new BusConfiguration();
-            busConfig.UseContainer<NServiceBus.WindsorBuilder>( c => c.ExistingContainer( container ) );
+            var busConfig = new EndpointConfiguration(typeof(WebApiApplication).Namespace);
+            busConfig.UseContainer<WindsorBuilder>( c => c.ExistingContainer( container ) );
             busConfig.UsePersistence<InMemoryPersistence>();
 
-            var bus = Bus.Create( busConfig ).Start();
+            var bus = Endpoint.Start(busConfig).GetAwaiter().GetResult();
 
             GlobalConfiguration.Configure( httpConfig =>
             {

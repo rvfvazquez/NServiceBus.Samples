@@ -10,9 +10,9 @@ namespace NSB17WebApiInjection.Controllers
 {
     public class SampleController : ApiController
     {
-        IBus bus;
+        IEndpointInstance bus;
 
-        public SampleController( IBus bus)
+        public SampleController( IEndpointInstance bus)
         {
             this.bus = bus;
         }
