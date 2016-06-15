@@ -20,6 +20,8 @@ namespace NSB06Retries.Receiver
             configuration.SecondLevelRetries()
                 .CustomRetryPolicy(transportMessage => 
                 {
+                    var t = transportMessage.ExceptionType();
+
                     if(transportMessage.NumberOfRetries() >= 3)
                     {
                         // sending back a TimeSpan.MinValue tells the
