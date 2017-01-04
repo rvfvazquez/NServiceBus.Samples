@@ -2,6 +2,7 @@
 using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
 using System;
 using Topics.Radical.Helpers;
 namespace NSB14ShippingService
@@ -27,6 +28,7 @@ namespace NSB14ShippingService
                 ResourceManagerId = new Guid( "{1FD7BDB9-A219-4A90-AAB3-B15F050A86A8}" ),
                 DataDirectory = @"~\RavenDB\Data"
             }.Initialize();
+            new RavenDocumentsByEntityName().Execute(embeddedSore);
 
             cfg.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions()

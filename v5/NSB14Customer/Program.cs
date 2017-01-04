@@ -7,6 +7,7 @@ using System.Linq;
 using NSB14Customer.Messages.Events;
 using Topics.Radical.Helpers;
 using System.Threading;
+using Raven.Client.Indexes;
 
 namespace NSB14Customer
 {
@@ -29,6 +30,7 @@ namespace NSB14Customer
                 ResourceManagerId = new Guid( "{B9EC41C8-6DAB-4EF2-9805-9181F0A8B208}" ),
                 DataDirectory = @"~\RavenDB\Data"
             }.Initialize();
+            new RavenDocumentsByEntityName().Execute(embeddedSore);
 
             cfg.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions()

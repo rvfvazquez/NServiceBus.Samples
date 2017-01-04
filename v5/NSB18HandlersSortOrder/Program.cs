@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace NSB18HandlersSortOrder
                 ResourceManagerId = new Guid( "{46FFEA87-77A7-43A7-88D3-79778E677D52}" ),
                 DataDirectory = @"~\RavenDB\Data"
             }.Initialize();
+            new RavenDocumentsByEntityName().Execute(embeddedSore);
 
             cfg.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions()

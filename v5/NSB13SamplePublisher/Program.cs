@@ -2,6 +2,7 @@
 using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace NSB13SamplePublisher
                 ResourceManagerId = new Guid( "{FDF958EB-7EE3-42F9-B757-E9836DF1F417}" ),
                 DataDirectory = @"~\RavenDB\Data"
             }.Initialize();
+            new RavenDocumentsByEntityName().Execute(embeddedSore);
 
             cfg.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions()
